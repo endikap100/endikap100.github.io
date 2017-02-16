@@ -1,0 +1,33 @@
+---
+layout: post
+title: Túnel OpenSSH
+date: 2016-08-01 23:08:03.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Seguridad
+tags:
+- GNU/Linux
+- openssh
+- ssh
+meta:
+  _edit_last: '91277960'
+  geo_public: '0'
+  _publicize_job_id: '25375147022'
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p><img class="aligncenter size-full wp-image-18" src="{{ site.baseurl }}/assets/openssh.gif" alt="openssh" width="578" height="191" /></p>
+<p>Algunas veces nos podemos encontrar que necesitamos acceder a un puerto en una maquina remota el cual esta filtrado para conexiones externas (como pueden ser los paneles de control web), para llegar a este puerto podemos usar un túnel mediante OpenSSH. Mediante este túnel lo que conseguiremos es que todo el trafico que enviemos a un puerto local, al que si tenemos acceso, se enrute hacia el puerto en la maquina remota a el que no tenemos acceso directo.<br />
+<!--more--></p>
+<p>comando:</p>
+<p>ssh -p &lt;puerto_ssh&gt; -l &lt;user_name&gt; -N -L&lt;puerto_local&gt;:127.0.0.1:&lt;puerto_remoto&gt; &lt;ip_del_ servidor_remoto&gt;</p>
+<p>ejemplo:</p>
+<p>ssh -p 2221 -l end -N -L8080:127.0.0.1:64295 192.168.0.50</p>
+<p>Con este ejemplo conseguiremos establecer una conexión entre nuestra maquina y la maquina remota. Con esta conexión haciendo peticiones a localhost:8080, estas se enviaran a la maquina remota y podremos comunicarnos con el puerto 64295 de la maquina remota.</p>

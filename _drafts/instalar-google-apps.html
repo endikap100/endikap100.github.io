@@ -1,0 +1,42 @@
+---
+layout: post
+title: Instalar google apps
+date: 
+type: post
+published: false
+status: draft
+categories:
+- android
+- Tutorial
+tags: []
+meta:
+  _edit_last: '91277960'
+  geo_public: '0'
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p>Aunque uno no sea muy partidario de google, aveces se necesitan los servicios de google play para algunas aplicaciones...<br />
+<!--more--></p>
+<p>Para este ejemplo se va a usar una una maquina virtual android 4.4.4 montada con genymotion.<br />
+Lo primero es descargar las google apps desde la <a href="http://wiki.cyanogenmod.org/w/Google_Apps">wiki de cyanogenmod</a>,  descargar las google apps para versiones de cyanogenmod equivalentes a el android donde se quieran instalar (ejemplo para android 4.4.4 se descargaran las google apps de cyanogenmod 11</p>
+<p>Se necesitaran:</p>
+<p>GoogleLoginService.apk que esta dentro del archibo comprimido Core/gsflogin-all.tar.xz<br />
+GoogleServicesFramework.apk que esta dentro del archibo comprimido Core/gsfcore-all.tar.xz</p>
+<p>Phonesky.apk que esta dentro de el archivo comprimido Core/vending-all.tar.xz (para versiones anteriores a la creo que este archivo se llama Vending.apk)</p>
+<p>Una vez tenemos los apk que vamos a instala tambien necesitaremos la el android sdk (esta despues de toda la mierda de android studio)</p>
+<p>Una vez descomprimidas entraremos en la carpeta platform-tools desde la terminal y ejecutaremos las siguientes ordenes</p>
+<p>Para montar la particion donde copiaremos los apk-s</p>
+<p>adb shell mount -o remount,rw -t yaffs2 /dev/block/mtdblock0 /system</p>
+<p>Para añadirle permisos de escritura</p>
+<p># Allow writing to app directory on system partition<br />
+adb shell chmod 777 /system/app</p>
+<p>y para copiar los las apk-s</p>
+<p># Install following apk<br />
+adb push GoogleLoginService.apk /system/app/.<br />
+adb push GoogleServicesFramework.apk /system/app/.<br />
+adb push Phonesky.apk /system/app/. # Vending.apk in older versions</p>
+<p>&nbsp;</p>

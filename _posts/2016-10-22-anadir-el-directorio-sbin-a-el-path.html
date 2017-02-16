@@ -1,0 +1,25 @@
+---
+layout: post
+title: Añadir el directorio sbin a el path
+date: 2016-10-22 17:06:05.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Sin categoría
+tags: []
+meta:
+  _edit_last: '91277960'
+  geo_public: '0'
+  _publicize_job_id: '28116288545'
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p>En una instalación de debian (desconozco si en las otras distribuciones pasa lo mismo) cuando se intentan ejecutar comandos como fdisk, ifconfig, poweroff, reboot, route, shutdown... nos salta un error diciendo que no se ha encontrado la orden, pero los comandos están y si los ejecutamos con la ruta completa si nos permite ejecutarlos. Esto es porque el directorio /sbin que los contiene no esta añadido a el path de cada usuario donde se busca.<br />
+<!--more--><br />
+Para añadirlo añadimos la siguiente linea en el archivo .bashrc :<br />
+export PATH=$PATH:/sbin</p>

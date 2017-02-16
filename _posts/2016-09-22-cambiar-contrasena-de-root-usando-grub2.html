@@ -1,0 +1,42 @@
+---
+layout: post
+title: Cambiar contraseña de root usando grub2
+date: 2016-09-22 15:57:15.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Seguridad
+- Tutorial
+tags:
+- grub2
+meta:
+  _edit_last: '91277960'
+  _oembed_85a7773e68abd1a8a2dddb4ac1f2f506: "{{unknown}}"
+  _oembed_f496044f0c1f2890d79479312e4cf05d: "{{unknown}}"
+  geo_public: '0'
+  _publicize_job_id: '27093410317'
+  _oembed_a5290a9212407e6296fecccc0d4784f4: "{{unknown}}"
+  _oembed_6221d0957787bcb21c66dc10d552d8c4: "{{unknown}}"
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p><img class="size-full wp-image-27 aligncenter" src="{{ site.baseurl }}/assets/cambiarpasscongrub2.png" alt="cambiarpasscongrub2" width="630" height="473" /></p>
+<ul><!--more--></p>
+<li>Presionar la tecla e en el menú de grub2</li>
+<li>Buscar la linea que empiece por linux, y se le añade en el final "rw init=/bin/bash" como aparece en la foto de el principio.</li>
+<li>Pulsamos Ctrl+x y tendremos una shell como root</li>
+<li>Para cambiar la pasword usaremos el comando
+<pre># passwd</pre>
+</li>
+<li>Ya tenemos nueva contraseña para el usuario root, para reiniciar:
+<pre># /sbin/reboot -f</pre>
+</li>
+</ul>
+<p>Fuente:<br />
+https://fedoraproject.org/wiki/How_to_reset_a_root_password</p>

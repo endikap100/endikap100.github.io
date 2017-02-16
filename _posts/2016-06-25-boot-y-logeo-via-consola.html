@@ -1,0 +1,37 @@
+---
+layout: post
+title: Boot y logeo vía consola
+date: 2016-06-25 17:29:34.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Tutorial
+tags:
+- GNU/Linux
+- login
+- systemd
+meta:
+  _edit_last: '91277960'
+  geo_public: '0'
+  _oembed_8934ceb4108545263323bad3e5d5914a: "{{unknown}}"
+  _oembed_a64a518ac43e115090ce9d93d70f9eb3: "{{unknown}}"
+  _oembed_a61d27c5c50e875013197b7f860d7ed0: "{{unknown}}"
+  _publicize_job_id: '24181815351'
+  _oembed_c2f82eeef19d9950089c07e79e420865: "{{unknown}}"
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p>Algunas de mis maquinas virtuales solo las enciendo por tareas de mantenimiento para los cuales solo necesito una terminal, pero en las que uso la interfaz gráfica para otras muchas cosas por comodidad. Entonces para que iniciarlo gráficamente si en modo consola tarda menos y es lo único que necesito la mayoría de veces?<br />
+<!--more--></p>
+<p>Para logearse en modo consola:<br />
+<strong><span style="color:#000080;">systemctl set-default multi-user.target</span></strong></p>
+<p>Para logearse en modo gráfico:<br />
+<strong><span style="color:#000080;">systemctl set-default graphical.target</span></strong></p>
+<p>Fuente:<br />
+https://wiki.archlinux.org/index.php/Systemd</p>

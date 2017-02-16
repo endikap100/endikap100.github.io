@@ -1,0 +1,56 @@
+---
+layout: post
+title: Configurar una VPN con openvpn
+date: 
+type: post
+published: false
+status: draft
+categories:
+- Sin categoría
+tags: []
+meta:
+  _edit_last: '91277960'
+  geo_public: '0'
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p>instalar openvpn:<br />
+# apt-get install openvpn<br />
+configurar openvpn:<br />
+gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf<br />
+editar el archivo /etc/openvpn/server.conf cambiando:<br />
+dh dh1024.pem por dh dh2048.pem<br />
+para añadir el certificado:<br />
+cp -r /usr/share/easy-rsa/ /etc/openvpn<br />
+nano /etc/openvpn/easy-rsa/vars<br />
+cambiar la seccion el la que aparecen el pais, ciudad y correo<br />
+cambiar el nombre de el certificado<br />
+openssl dhparam -out /etc/openvpn/dh2048.pem 2048<br />
+ya esta el certificado generado ahora para generar las claves:<br />
+cd /etc/openvpn/easy-rsa<br />
+. ./vars<br />
+./clean-all<br />
+./build-ca<br />
+saldran como sugerencia los parametros definidos en el archivo de configuracion con anterioridad<br />
+./build-key-server server<br />
+server es el nombre definido en el archiv de configuracion con anterioridad<br />
+responder que si a las dos preguntas (Sign the certificate? y 1 out of 1 certificate requests certified, commit?)<br />
+mover las claves de el servidor:<br />
+cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key,ca.crt} /etc/openvpn</p>
+<p>Generar el certificado y las claves para los usuarios<br />
+./build-key client1<br />
+enter en todas menos en las que la opcion se si o no en ese caso seleccionaremos si</p>
+<p>cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf /etc/openvpn/easy-rsa/keys/client.ovpn<br />
+nano /etc/openvpn/easy-rsa/keys/client.ovpn<br />
+cambiar remote your_server_ip 1194 por la ip de el servidor</p>
+<p>pasar los siguientes archivos a el ordenador cliente:<br />
+comunes para todos los clientes:<br />
+/etc/openvpn/easy-rsa/keys/client.ovpn<br />
+/etc/openvpn/ca.crt</p>
+<p>archivos que tenemos que generar independientemente para cada cliente:<br />
+/etc/openvpn/easy-rsa/keys/client1.crt<br />
+/etc/openvpn/easy-rsa/keys/client1.key</p>

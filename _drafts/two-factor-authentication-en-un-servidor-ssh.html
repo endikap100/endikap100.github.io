@@ -1,0 +1,47 @@
+---
+layout: post
+title: Two-factor authentication en un servidor ssh
+date: 
+type: post
+published: false
+status: draft
+categories:
+- GNU/Linux
+- Seguridad
+- Tutorial
+tags:
+- 2fa
+- ssh
+- Two-factor authentication
+meta:
+  _edit_last: '91277960'
+  geo_public: '0'
+  _oembed_2bc5ef70235858519b3f7873e68eb424: "{{unknown}}"
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p><img class="size-full wp-image-15 aligncenter" src="{{ site.baseurl }}/assets/google-authenticator.png" alt="google authenticator" width="175" height="175" /></p>
+<p>La autenticación mediante dos factores la un método para identificar a un usuario mediante una clave que se sabe y una variable o algo de lo que no se separe el usuario, básicamente lo que hacemos es añadirle una capa extra a nuestra seguridad.<br />
+Para esto vamos a utilizar la aplicación móvil google authentificator que es la aplicación que genera la variable antes mencionada, un token que cambia cada 30 segundos en este caso.<br />
+<!--more--></p>
+<p>Instalamos el paquete libpam-google-authenticator:<br />
+$ sudo apt-get install libpam-google-authenticator<br />
+Con el usuario que queramos ejecutamos:<br />
+$ google-authenticator<br />
+Nos pondrá Do you want authentication tokens to be time-based (y/n) le ponemos y.<br />
+Nuego nos ara alguna pregunta como deshabilitar el mismo token para distintos usos, si queremos mantener el tiempo por defecto o queremos poner otro y si queremos activar el limite de 3 autenticaciones por cada 30 segundos para evitar la fuerza bruta, estas opciones a gusto de cada uno (en mi caso e puesto y,y,n,y).<br />
+Escaneamos el código qr con la aplicación móvil de google authenticator y guardamos los códigos en lugar seguro.<br />
+Nhora tenemos que modificar dos archivos.<br />
+El primer archivo es /etc/pam.d/sshd que le añadir al principio:<br />
+auth required pam_google_authenticator.so<br />
+El segundo archivo que tenemos que modificar es /etc/ssh/sshd_config donde cambiaremos en valor del atributo ChallengeResponseAuthentication de no a yes, y añadimos al final:<br />
+AuthenticationMethods publickey,keyboard-interactive<br />
+Y reiniciar el servidor ssh<br />
+$ sudo service ssh restart<br />
+Antes de cerrar la sesión actual comprobad que funciona para evitar disgustos</p>
+<p>fuente:<br />
+https://wiki.archlinux.org/index.php/Google_Authenticator</p>

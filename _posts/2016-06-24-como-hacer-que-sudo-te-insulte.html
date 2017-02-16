@@ -1,0 +1,35 @@
+---
+layout: post
+title: Como  hacer que sudo te insulte
+date: 2016-06-24 18:12:04.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Tutorial
+tags:
+- GNU/Linux
+- sudo
+meta:
+  _edit_last: '91277960'
+  geo_public: '0'
+  _publicize_job_id: '24153431270'
+author:
+  login: endikap100
+  email: endikap100@hotmail.com
+  display_name: endikap100
+  first_name: ''
+  last_name: ''
+---
+<p>Hacer que sudo te insulte cuando escribes mal la contraseña puede parecer infantil... Pero a mi me hace gracia que me responda <em>Are you on drugs?</em></p>
+<p><img class="size-full wp-image-6 aligncenter" src="{{ site.baseurl }}/assets/pantallazo-2016-06-24-18-07-34.png" alt="sudoins" width="658" height="414" /><br />
+<!--more--></p>
+<p>Para esto se usa el editor por defecto, así que yo que me considero noob prefiero nano<br />
+<strong><span style="color:#000080;">export EDITOR=/usr/bin/nano</span></strong><br />
+<strong><span style="color:#000080;">sudo visudo</span></strong></p>
+<p>Se nos abrirá un archivo de configuración y cambiamos<br />
+<span style="color:#993300;"><strong>Defaults env_reset</strong></span><br />
+Por<br />
+<span style="color:#993300;"><strong>Defaults env_reset,insults</strong></span></p>
+<p>Guardamos y salimos</p>
