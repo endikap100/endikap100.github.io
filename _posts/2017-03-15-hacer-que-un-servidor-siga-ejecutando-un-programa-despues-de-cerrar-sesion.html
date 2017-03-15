@@ -1,0 +1,19 @@
+---
+layout: post
+title: Hacer que un servidor siga ejecutando un programa después de cerrar sesión
+date: 2017-03-15
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Tutorial
+tags: []
+meta:
+author: endikap100
+---
+<p>Algunas veces es necesario dejar un programa ejecutándose aun cuando no tenemos ninguna sesión iniciada en ese ordenador. Para que el programa siga ejecutándose después de cerrar la sesión ejecutamos:</p>
+<code>nohup &lt;programa con parámetros&gt; &</code>
+<p>Donde &lt;programa con parámetros&gt; es el comando normal que ejecutaríamos si no quisiésemos cerrar la sesión.</p>
+<p>Si este programa tiene un output de texto se guardara en nohup.out. Si el programa genera demasiado texto podemos ejecutarlo de la siguiente manera para que no se genere nada de texto y por lo tanto en archivo nohup.out no se cree (esto tampoco guardara la salida de errores).</p>
+<code>nohup &lt;programa con parámetros&gt; &> &</code>

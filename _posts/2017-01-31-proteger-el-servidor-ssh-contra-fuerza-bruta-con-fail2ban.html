@@ -8,20 +8,13 @@ status: publish
 categories:
 - GNU/Linux
 - Seguridad
-- Sin categoría
 - Tutorial
 tags: []
 meta:
-  _edit_last: '91277960'
-  geo_public: '0'
-  _oembed_1367aeaabc93b8fe57f73b0d20e49b9d: "{{unknown}}"
-  _oembed_454521c932287b2878fdda0b892e2fdb: "{{unknown}}"
-  _publicize_job_id: '1330535316'
-  _oembed_8832bf2a4f39da1a4bcc10188c10a113: "{{unknown}}"
 author: endikap100
 ---
 <p><img class="size-full aligncenter" src="{{ site.baseurl }}/assets/fail2ban_logo.png" alt="" width="135" height="130" /><br />
-Fail2ban es un programa que tras barios intentos de login fallidos en nuestro servidor vaneara la dirección que se esta intentando autenticar mediante iptables.<br />
+Fail2ban es un programa que tras barios intentos de login fallidos en nuestro servidor baneara la dirección que se esta intentando autenticar mediante iptables.<br />
 <!--more--></p>
 <p>Para ello debemos instalar el paquete fail2ban<br />
 <code>$ sudo apt-get install fail2ban</code><br />
@@ -31,9 +24,9 @@ Y ahora empezaremos a editar este ultimo<br />
 <code>$ sudo nano /etc/fail2ban/jail.local</code><br />
 Se Puede añadir una ip a una whitelist separado por un espacio en:<br />
 <code>ignoreip = 127.0.0.1/8</code><br />
-Se puede cambiar los segundo que estará una ip vaneada en (se recomienda aumentar este valor):<br />
+Se puede cambiar los segundo que estará una ip baneada en (se recomienda aumentar este valor):<br />
 <code>bantime = 600</code><br />
-Y también se puede cambiar el tiempo durante el que se van a contabilizar los intentos en:<br />
+Y también se puede cambiar el tiempo durante el que se ban a contabilizar los intentos en:<br />
 <code>findtime = 600</code><br />
 Y reducir el numero de intentos en:<br />
 <code>maxretry = 5</code><br />
@@ -42,12 +35,12 @@ También se puede configurar en envío de las alerta a un correo especificando l
 y el remitente en:<br />
 <code>sender = fail2ban</code><br />
 Dependiendo de como queramos recibir las alertas podemos configurar la variable action con el siguiente contenido:<br />
-action_ si solo queremos que vanee y guarde en los logs<br />
-action_mw si queremos que vanee y nos envíen un email<br />
+action_ si solo queremos que banee y guarde en los logs<br />
+action_mw si queremos que banee y nos envíen un email<br />
 action_mwl una combinación de las anteriores dos<br />
 con lo cual como ejemplo si queremos que nos envíe un email y que se guarde en los logs ponemos:<br />
 <code>action = %(action_mwl)s</code><br />
-Para habilitar el vaneo de ataque a el servidor ssh se añade en la sección [sshd] la siguiente linea<br />
+Para habilitar el baneo de ataque a el servidor ssh se añade en la sección [sshd] la siguiente linea<br />
 <code>enabled = true</code><br />
 los filtros se pueden encontrar en /etc/fail2ban/filter.d</p>
 <p>Y ya estaremos algo mas protegidos contra bots que intentan autenticarse en cualquier servidor con un servidor ssh expuesto.</p>
