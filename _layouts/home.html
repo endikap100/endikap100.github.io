@@ -15,7 +15,7 @@ layout: default
           <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
         </h2>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span><br>
-        {{post.excerpt|remove:'<p>'|remove:'</p>'}} <a href="{{ post.url | relative_url }}"> &nbsp... Leer articulo completo</a>
+        {{post.excerpt|split: "<!--more-->"|first}} <a href="{{ post.url | relative_url }}"> &nbsp... Leer articulo completo</a>
       </li>
     {% endfor %}
   </ul>
