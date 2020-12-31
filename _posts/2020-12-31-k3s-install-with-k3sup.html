@@ -20,3 +20,4 @@ Deploy a HA K3S cluster with etcd using k3sup
 <p><<code>k3sup install --ip <first master ip> --user <server user> --cluster --ssh-key <ssh keys> --k3s-version <k3s version> --k3s-extra-args '--disable=servicelb'</code></p>
 <<p>For the following master nodes execute:</p>
 <p><<code>k3sup join --ip <next master ip>  --user <server user> --server-user <first master server user> --server-ip <first master ip>  --server --ssh-key <ssh keys> --k3s-version  <k3s version> --k3s-extra-args '--disable=servicelb'</code></p>
+<p>source: https://github.com/alexellis/k3sup/blob/master/README.md</p>
