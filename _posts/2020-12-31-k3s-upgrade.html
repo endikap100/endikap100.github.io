@@ -1,0 +1,67 @@
+---
+layout: post
+title: K3S upgrade
+date: 2020-12-31 18:12:04.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Tutorial
+tags:
+- GNU/Linux
+- k3s
+meta:
+author: endikap100
+---
+<!--more-->
+<p><code>kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.6.2/system-upgrade-controller.yaml</code></p>
+<p>Create a upgrade_plan.yml file with the following content</p>
+<code>
+  # Server plan
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: server-plan
+  namespace: system-upgrade
+spec:
+  concurrency: 1
+  cordon: true
+  nodeSelector:
+    matchExpressions:
+    - key: node-role.kubernetes.io/master
+      operator: In
+      values:
+      - "true"
+  serviceAccountName: system-upgrade
+  upgrade:
+    image: rancher/k3s-upgrade
+  channel: https://update.k3s.io/v1-release/channels/stable
+---
+# Agent plan
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: agent-plan
+  namespace: system-upgrade
+spec:
+  concurrency: 1
+  cordon: true
+  nodeSelector:
+    matchExpressions:
+    - key: node-role.kubernetes.io/master
+      operator: DoesNotExist
+  prepare:
+    args:
+    - prepare
+    - server-plan
+    image: rancher/k3s-upgrade:v1.19.3+k3s2
+  serviceAccountName: system-upgrade
+  upgrade:
+    image: rancher/k3s-upgrade
+  channel: https://update.k3s.io/v1-release/channels/stable
+</code>
+<p>Apply the plan</p>
+<code>sudo kubectl apply -f upgrade_plan.yml</code>
+
+<p>source: https://rancher.com/docs/k3s/latest/en/upgrades/automated/</p>
