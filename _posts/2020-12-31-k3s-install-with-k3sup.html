@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HA K3S install with k3sup
-date: 2020-12-31 18:12:04.000000000 +02:00
+date: 2020-12-31 10:12:04.000000000 +02:00
 type: post
 published: true
 status: publish
@@ -14,10 +14,10 @@ tags:
 meta:
 author: endikap100
 ---
-Deploy a HA K3S cluster with etcd using k3sup
+<p>Deploy a HA K3S cluster with etcd using k3sup</p>
 <!--more-->
-<<p>For the first master node execute:</p>
-<p><<code>k3sup install --ip <first master ip> --user <server user> --cluster --ssh-key <ssh keys> --k3s-version <k3s version> --k3s-extra-args '--disable=servicelb'</code></p>
-<<p>For the following master nodes execute:</p>
-<p><<code>k3sup join --ip <next master ip>  --user <server user> --server-user <first master server user> --server-ip <first master ip>  --server --ssh-key <ssh keys> --k3s-version  <k3s version> --k3s-extra-args '--disable=servicelb'</code></p>
+<p>For the first master node execute:</p>
+<p><code>k3sup install --ip &lt;first master ip&gt; --user &lt;server user&gt; --cluster --ssh-key &lt;ssh keys&gt; --k3s-version &lt;k3s version&gt; --k3s-extra-args '--disable=servicelb'</code></p>
+<p>For the following master nodes execute:</p>
+<p><code>k3sup join --ip &lt;next master ip&gt;  --user &lt;server user&gt; --server-user &lt;first master server user&gt; --server-ip &lt;first master ip&gt;  --server --ssh-key &lt;ssh keys&gt; --k3s-version  &lt;k3s version&gt; --k3s-extra-args '--disable=servicelb'</code></p>
 <p>source: https://github.com/alexellis/k3sup/blob/master/README.md</p>

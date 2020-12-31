@@ -1,7 +1,7 @@
 ---
 layout: post
-title: K3S upgrade
-date: 2020-12-31 18:12:04.000000000 +02:00
+title: K3S upgrade using a kubernetes plan
+date: 2020-12-31 11:12:04.000000000 +02:00
 type: post
 published: true
 status: publish
@@ -17,8 +17,7 @@ author: endikap100
 <!--more-->
 <p><code>kubectl apply -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.6.2/system-upgrade-controller.yaml</code></p>
 <p>Create a upgrade_plan.yml file with the following content</p>
-<code>
-  # Server plan
+<p><code style="white-space: pre-wrap;"># Server plan
 apiVersion: upgrade.cattle.io/v1
 kind: Plan
 metadata:
@@ -60,8 +59,8 @@ spec:
   upgrade:
     image: rancher/k3s-upgrade
   channel: https://update.k3s.io/v1-release/channels/stable
-</code>
+</code></p>
 <p>Apply the plan</p>
-<code>sudo kubectl apply -f upgrade_plan.yml</code>
+<p><code>sudo kubectl apply -f upgrade_plan.yml</code></p>
 
 <p>source: https://rancher.com/docs/k3s/latest/en/upgrades/automated/</p>
